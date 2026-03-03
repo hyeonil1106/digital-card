@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card</title>
+    <style>
+        /* 기본 레이아웃 및 다크 배경 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0a0a0c;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 배경 그라데이션 오브제 (유리 효과를 돋보이게 함) */
+        .background-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+            animation: move 20s infinite alternate;
+        }
+
+        .blob-2 {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            width: 400px;
+            height: 400px;
+            right: -100px;
+            bottom: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(180deg); }
+        }
+
+        /* 글래스모피즘 카드 스타일 */
+        .card {
+            width: 360px;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 마우스 호버 효과 */
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 프로필 이미지 영역 */
+        .profile-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-size: 40px;
+        }
+
+        /* 실제 이미지를 넣을 경우 대비 */
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 이름 및 텍스트 스타일 */
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+        }
+
+        .bio {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin: 0 0 40px 0;
+            word-break: keep-all;
+        }
+
+        /* 이메일 링크 버튼 */
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .email-link:hover {
+            background: #ffffff;
+            color: #000;
+        }
+
+        .email-link svg {
+            margin-right: 8px;
+        }
+
+        /* 하단 장식용 태그 */
+        .badges {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 배경 장식 -->
+    <div class="background-blob"></div>
+    <div class="background-blob blob-2"></div>
+
+    <!-- 명함 카드 -->
+    <div class="card">
+        <div class="profile-container">
+            <div class="profile-image">
+                <!-- 이미지가 없을 경우 아이콘 표시, 이미지가 있다면 아래 img 태그 활성화 -->
+                <img src="./profile.png" alt="내 이미지">
+            </div>
+        </div>
+
+        <h1 class="name">장현일 (jang hyeon il)</h1>
+        <p class="bio">
+            세상을 변화시키는 가치를 만드는 기획자,<br>
+            창의적인 아이디어로 문제를 해결합니다.
+        </p>
+
+        <a href="mailto:hyoenil1106@gmail.com" class="email-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hyoenil1106@gmail.com
+        </a>
+
+        <div class="badges">
+            <span class="badge">#Creative</span>
+            <span class="badge">#Passionate</span>
+            <span class="badge">#Tech</span>
+        </div>
+    </div>
+
+</body>
+</html>
